@@ -1,2 +1,7 @@
 pip==9.0.1
 django==1.9.11
+mistune==0.7.1
+pygments==2.0.2
+django-reversion==1.9.3
+django-compressor==2.0
+django-pagedown==0.1.0

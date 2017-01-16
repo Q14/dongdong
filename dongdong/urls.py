@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.views.generic import TemplateView
+from article.views import BlogListView
 
 urlpatterns = [
     url(r'^article/', include('article.urls')),
+    url(r'^$', BlogListView.as_view()),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^404', TemplateView.as_view(template_name="404.html")),
 ]
