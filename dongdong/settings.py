@@ -14,7 +14,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 import os
 # import collections import OrderedDict
-# from django.conf import global_settings
+from django.conf import global_settings
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -47,10 +47,10 @@ INSTALLED_APPS = (
     'compressor'
 )
 
-# TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + []
-# BOOTSTRAP_ADMIN_SIDEBAR_MENU = True
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + []
+BOOTSTRAP_ADMIN_SIDEBAR_MENU = True
 
-# COMPRESS_ENABLED = True
+COMPRESS_ENABLED = True
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -98,6 +98,13 @@ DATABASES = {
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

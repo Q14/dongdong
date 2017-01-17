@@ -58,7 +58,7 @@ class Blog(models.Model):
     is_public = models.BooleanField('公开', default=True)
     is_top = models.BooleanField('置顶', default=False)
     access_count = models.IntegerField('浏览量', default=1, editable=False)
-    category = models.ForeignKey('Category', verbose_name='所属分类')
+    category = models.ForeignKey('Category',  verbose_name='所属分类')
     tags = models.ManyToManyField('Tag', verbose_name='标签集合', null=True, blank=True)
     tags.help_text = '标签'
     author = models.ForeignKey(User, verbose_name='作者')

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # coding=utf-8
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -9,7 +8,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
-# from .libs.tag_cloud import TagCloud
+from .libs.tag_cloud import TagCloud
 from article.models import Blog, Tag, Category
 
 __author__ = "jinzhu"
@@ -41,13 +40,14 @@ class TagsView(ListView):
         for tag in tag_list:
             blog_count = Blog.objects.filter(tags__pk=tag.id).count()
             tag.blog_count = blog_count
-    '''
-       max_count = min_count = 0
-       if len(tag_list) > 0:
+
+        max_count = min_count = 0
+
+        if len(tag_list) > 0:
             max_count = max(tag_list, key=lambda tag: tag.blog_count).blog_count
             min_count = min(tag_list, key=lambda tag: tag.blog_count).blog_count
 
-      #  tag_cloud = TagCloud(min_count, max_count)
+        tag_cloud = TagCloud(min_count, max_count)
 
         for tag in tag_list:
             tag_font_size = tag_cloud.get_tag_font_size(tag.blog_count)
@@ -60,7 +60,6 @@ class TagsView(ListView):
         page['title'] = u"分类"
         context['page'] = page
         return context
-'''
 
 
 class CategoriesView(ListView):
