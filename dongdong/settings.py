@@ -15,6 +15,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 # import collections import OrderedDict
 from django.conf import global_settings
+from collections import OrderedDict
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -29,12 +30,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'collectstatic')
+
 PAGE_SIZE = 10
 # Application definition
 
 INSTALLED_APPS = (
-    'bootstrap_admin',
+    # 'bootstrap_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -44,7 +45,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'article',
-    'compressor'
+    'compressor',
+    'pagedown'
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + []
@@ -76,6 +78,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'article.context_processors.theme'
             ],
         },
     },
@@ -83,6 +86,52 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dongdong.wsgi.application'
 
+
+
+# ---------------------------------------------------------------
+# 主题配置
+# ---------------------------------------------------------------
+SITE_TITLE = ""
+SITE_SUBTITLE = u"My Site"
+KEYWORDS = "Q14, Python"
+
+# ---------------------------------------------------------------
+# Menu Settings
+
+# ---------------------------------------------------------------
+MENU = OrderedDict(sorted({"home": {"label": u"首页", "path": "/", "icon": "home", "position": 1},
+                           "categories": {"label": u"分类", "path": "/categories", "icon": "th", "position": 3},
+                           "archives": {"label": u"归档", "path": "/archives", "icon": "archive", "position": 2},
+                           "tags": {"label": u"标签", "path": "/tags", "icon": "tags", "position": 4},
+                           "about": {"label": u"关于", "path": "/about", "icon": "user", "position": 5}, }.items(),
+                          key=lambda t: t[1]['position']))
+
+SCHEME = "Pisces"
+
+SOCIAL = OrderedDict(
+    sorted({"GitHub": {"label": u"GitHub", "link": "https://github.com/lzjun567", "social_icons": "github",
+                       "position": 1},
+            "Twitter": {"label": u"Twitter", "link": "https://twitter.com/lzjun1", "social_icons": "twitter",
+                        "position": 2},
+            "Weibo": {"label": u"微博", "link": "http://weibo.com/lzjun567 ", "social_icons": "weibo", "position": 3},
+            "Zhihu": {"label": u"知乎", "link": "https://www.zhihu.com/people/zhijun-liu", "social_icons": "",
+                      "position": 5},
+
+            }.items(), key=lambda t: t[1]['position']))
+
+SIDEBAR = {"position": "left",
+           "display": "post"
+           }
+
+DUOSHUO_SHORTNAME = "Q14"
+GOOGLE_SITE_VERIFICATION = "your google site verification"
+GOOGLE_ANALYTICS = "you google analytics id"
+USE_MOTION = True
+FANCYBOX = True
+RSS = '/rss'
+VERSION = '5.0.1'
+ALIPAY = ""
+WECHATPAY = ""
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -93,6 +142,8 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
 
 
 STATICFILES_DIRS = (
@@ -124,3 +175,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'collectstatic')

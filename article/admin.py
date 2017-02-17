@@ -1,9 +1,3 @@
-# from django.contrib import admin
-# from article.models import Blog
-#
-# # Register your models here.
-# admin.site.register(Blog)
-
 # -*- coding: utf-8 -*-
 
 import datetime
@@ -53,7 +47,8 @@ def submit_row(context):
 
 
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('title','category', 'is_public', 'status', 'publish', 'access_count')
+    list_display = ('title','category', 'is_public', 'status',
+                    'publish', 'access_count')
     fields = (
         'title',
         'link',

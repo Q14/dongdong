@@ -108,6 +108,9 @@ class BlogListView(BasePostListView):
     """
     template_name = 'index.html'
     queryset = Blog.objects.published().public()
+    # import  pdb;
+    # pdb.set_trace()
+    # print(queryset)
 
 
 class BlogsWithCategoryView(BasePostListView):
@@ -192,7 +195,7 @@ class LatestPosts(Feed):
     """
     from django.utils.feedgenerator import Atom1Feed
     feed_type = Atom1Feed
-    title = "foofish 的笔录"
+    title = "Q14的笔录"
     link = "/"
 
     def items(self):

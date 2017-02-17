@@ -21,10 +21,11 @@
         <div class="main-inner">
             <div class="content-wrap">
                 <div id="content" class="content">
+
                     {% block content %}{% endblock %}
                 </div>
-                {% include '_partials/duoshuo-hot-articles.html' %}
                 {% include '_partials/comments.html' %}
+                {% include '_partials/duoshuo-hot-articles.html' %}
             </div>
             {% if theme.sidebar.display != 'remove' %}
             {% block sidebar %}{% endblock %}
